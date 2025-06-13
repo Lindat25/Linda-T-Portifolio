@@ -25,17 +25,24 @@
         class="project-card"
         @click="openProjectModal(project)"
       >
-        <div class="project-image">
-          <img :src="project.image" :alt="project.title" />
+        <div class="project-visual" :class="project.visualClass">
+          <div class="project-icon">
+            <i :class="project.icon"></i>
+          </div>
           <div class="project-overlay">
             <div class="project-links">
-              <a :href="project.github" target="_blank" class="project-link" @click.stop>
+              <a v-if="project.github" :href="project.github" target="_blank" class="project-link" @click.stop>
                 <i class="fab fa-github"></i>
               </a>
-              <a :href="project.demo" target="_blank" class="project-link" @click.stop>
+              <a v-if="project.demo" :href="project.demo" target="_blank" class="project-link" @click.stop>
                 <i class="fas fa-external-link-alt"></i>
               </a>
             </div>
+          </div>
+          <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
           </div>
         </div>
         <div class="project-content">
@@ -44,11 +51,14 @@
           <p class="project-description">{{ project.shortDescription }}</p>
           <div class="project-tech">
             <span
-              v-for="tech in project.technologies"
+              v-for="tech in project.technologies.slice(0, 4)"
               :key="tech"
               class="tech-tag"
             >
               {{ tech }}
+            </span>
+            <span v-if="project.technologies.length > 4" class="tech-more">
+              +{{ project.technologies.length - 4 }} more
             </span>
           </div>
         </div>
@@ -59,10 +69,16 @@
     <div class="design-grid" v-if="activeFilter === 'Designing'">
       <div
         class="design-card"
-        v-for="item in designs"
+        v-for="(item, index) in designs"
         :key="item.title"
+        :class="`design-${index + 1}`"
       >
-        <img :src="item.image" :alt="item.title" class="design-image" />
+        <div class="design-visual">
+          <div class="design-icon">
+            <i :class="item.icon"></i>
+          </div>
+          <div class="design-pattern"></div>
+        </div>
         <div class="design-content">
           <h3 class="design-title">{{ item.title }}</h3>
           <p class="design-desc">{{ item.description }}</p>
@@ -78,20 +94,25 @@
         </button>
 
         <div class="modal-header">
-          <h2>{{ selectedProject.title }}</h2>
-          <div class="modal-links">
-            <a :href="selectedProject.github" target="_blank" class="modal-btn">
-              <i class="fab fa-github"></i> View Code
-            </a>
-            <a :href="selectedProject.demo" target="_blank" class="modal-btn primary">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
+          <div class="modal-project-visual" :class="selectedProject.visualClass">
+            <div class="modal-project-icon">
+              <i :class="selectedProject.icon"></i>
+            </div>
+          </div>
+          <div class="modal-header-content">
+            <h2>{{ selectedProject.title }}</h2>
+            <div class="modal-links">
+              <a v-if="selectedProject.github" :href="selectedProject.github" target="_blank" class="modal-btn">
+                <i class="fab fa-github"></i> View Code
+              </a>
+              <a v-if="selectedProject.demo" :href="selectedProject.demo" target="_blank" class="modal-btn primary">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="modal-body">
-          <img :src="selectedProject.image" :alt="selectedProject.title" class="modal-image" />
-
           <div class="modal-details">
             <h3>About This Project</h3>
             <p>{{ selectedProject.fullDescription }}</p>
@@ -121,46 +142,41 @@
 </template>
 
 <script>
-import cableImage from '@/assets/images/cable.png'
-import Od from '@/assets/images/od.svg'
-import Wings from '@/assets/images/img.png'
-import Africa from '@/assets/images/africa day poster.jpg'
-import AfricaDay from '@/assets/images/Africa day.jpg'
 export default {
   name: 'Projects',
   data() {
     return {
       activeFilter: 'All',
       selectedProject: null,
-      categories: ['All', 'Web Apps', 'Mobile', 'Designing'],
+      categories: ['All', 'Web Apps', 'Mobile', ],
       projects: [
         {
-            id: 1,
-            title: 'OD International Website',
-            category: 'Web Apps',
-            shortDescription: 'Corporate website with blog, mobile prototype, and SEO enhancements',
-            fullDescription: 'A modern, fully responsive corporate website developed for OD International. Built using WordPress and Framer, the site enhances user experience and engagement with clean design, optimized SEO, and dynamic content sections. Included development of mobile app prototypes using Flutter and implementation of data-driven marketing features.',
-            image: Od, // Replace with actual image path
-            technologies: ['WordPress', 'Framer', 'Flutter', 'HTML', 'CSS', 'JavaScript'],
-            features: [
-              'Custom WordPress theme development',
-              'SEO optimization resulting in 40% user engagement increase',
-              'Mobile app prototype development with Flutter',
-              'Web scraping scripts for market intelligence',
-              'Content-rich blog and service sections',
-              'Responsive design compatible across all devices',
-              'Marketing materials integration for brand visibility'
-            ],
-            github: '',
-            demo: 'https://www.odinternational.co.za/' // Replace with real demo URL if available
-          },
+          id: 1,
+          title: 'OD International Website',
+          category: 'Web Apps',
+          shortDescription: 'Corporate website with blog, mobile prototype, and SEO enhancements',
+          fullDescription: 'A modern, fully responsive corporate website developed for OD International. Built using WordPress and Framer, the site enhances user experience and engagement with clean design, optimized SEO, and dynamic content sections. Included development of mobile app prototypes using Flutter and implementation of data-driven marketing features.',
+          technologies: ['WordPress', 'Framer', 'Flutter', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+            'Custom WordPress theme development',
+            'SEO optimization resulting in 40% user engagement increase',
+            'Mobile app prototype development with Flutter',
+            'Web scraping scripts for market intelligence',
+            'Content-rich blog and service sections',
+            'Responsive design compatible across all devices',
+            'Marketing materials integration for brand visibility'
+          ],
+          github: '',
+          demo: 'https://www.odinternational.co.za/',
+          icon: 'fas fa-globe',
+          visualClass: 'visual-corporate'
+        },
         {
           id: 2,
           title: 'Task Management App',
           category: 'Web Apps',
           shortDescription: 'Task tracking system with user roles, built using PHP and vanilla JavaScript',
           fullDescription: 'A task management application developed during my time at OD International, designed to help teams assign, track, and manage tasks efficiently. Built using HTML, CSS, JavaScript for the front-end and PHP with a MySQL database on the backend. The app features user role management, task status updates, and a clean dashboard interface. Though not deployed publicly, it served as an internal productivity tool.',
-          image: '/images/task-manager.png',
           technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
           features: [
             'User authentication and role-based access',
@@ -170,37 +186,38 @@ export default {
             'Responsive layout for mobile and desktop',
             'Backend built in PHP with MySQL database integration'
           ],
-          github: '',
-          demo: ''
+          github: 'https://github.com/Lindat25/project-management',
+          demo: '',
+          icon: 'fas fa-tasks',
+          visualClass: 'visual-productivity'
         },
-
-          {
-            id: 3,
-            title: 'Wings of Hope Website',
-            category: 'Web Apps',
-            shortDescription: 'Framer-based responsive website for a non-profit organization',
-            fullDescription: 'Developed a modern, fully responsive website for Wings of Hope using Framer. The project focused on clean UX/UI, smooth animations, and clear messaging to support the organizations\'s mission. The site includes dynamic content sections, contact forms, and a fully branded design tailored to their identity.',
-            image: Wings,
-            technologies: ['Framer', 'HTML', 'CSS', 'JavaScript'],
-            features: [
-              'Designed and developed using Framer\'s visual builder',
-              'Custom animations and transitions for engaging UX',
-              'Mobile-first responsive layout',
-              'Clear navigation and structured content',
-              'Contact and donation integration sections',
-              'Consistent branding and modern visuals',
-              'Deployed and maintained with client feedback'
-            ],
-            github: '', // Framer projects typically don't have public source code
-            demo: 'https://wings-of-hope.co.za'
-          },
+        {
+          id: 3,
+          title: 'Wings of Hope Website',
+          category: 'Web Apps',
+          shortDescription: 'Framer-based responsive website for a non-profit organization',
+          fullDescription: 'Developed a modern, fully responsive website for Wings of Hope using Framer. The project focused on clean UX/UI, smooth animations, and clear messaging to support the organizations\'s mission. The site includes dynamic content sections, contact forms, and a fully branded design tailored to their identity.',
+          technologies: ['Framer', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+            'Designed and developed using Framer\'s visual builder',
+            'Custom animations and transitions for engaging UX',
+            'Mobile-first responsive layout',
+            'Clear navigation and structured content',
+            'Contact and donation integration sections',
+            'Consistent branding and modern visuals',
+            'Deployed and maintained with client feedback'
+          ],
+          github: '',
+          demo: 'https://wings-of-hope.co.za',
+          icon: 'fas fa-heart',
+          visualClass: 'visual-nonprofit'
+        },
         {
           id: 4,
           title: 'TaskFlow Mobile App',
           category: 'Mobile',
           shortDescription: 'Flutter-based task management app with Play Store deployment',
           fullDescription: 'A comprehensive mobile task management application built with Flutter. The app features user authentication, real-time task synchronization, offline capabilities, and push notifications. Successfully deployed to Google Play Store with proper app store optimization, including metadata management, screenshot optimization, and compliance with Play Store policies. Managed the complete app lifecycle from development to production deployment.',
-          image: '/images/taskflow-mobile.png',
           technologies: ['Flutter', 'Dart', 'Firebase', 'SQLite', 'Google Play Console'],
           features: [
             'Cross-platform mobile app (Android & iOS ready)',
@@ -214,17 +231,17 @@ export default {
             'Version control and release management',
             'Play Console analytics integration'
           ],
-          github: 'https://github.com/yourusername/taskflow-mobile',
-          demo: 'https://play.google.com/store/apps/details?id=com.yourcompany.taskflow'
+          github: '',
+          demo: '',
+          icon: 'fas fa-mobile-alt',
+          visualClass: 'visual-mobile'
         },
-
         {
           id: 6,
           title: 'Portfolio Website',
           category: 'Web Apps',
           shortDescription: 'Responsive portfolio built with Vue.js',
           fullDescription: 'This very portfolio website you\'re viewing! Built with Vue.js and featuring a modern dashboard design, smooth animations, and fully responsive layout. Showcases my projects, skills, and experience in an interactive format.',
-          image: '/api/placeholder/400/250',
           technologies: ['Vue.js', 'Vue Router', 'CSS3', 'JavaScript'],
           features: [
             'Responsive dashboard design',
@@ -236,7 +253,9 @@ export default {
             'Mobile-first approach'
           ],
           github: 'https://github.com/yourusername/portfolio',
-          demo: 'https://yourportfolio.com'
+          demo: 'https://yourportfolio.com',
+          icon: 'fas fa-user',
+          visualClass: 'visual-portfolio'
         }
       ],
 
@@ -244,17 +263,17 @@ export default {
         {
           title: 'Event Flyer - Youth Conference',
           description: 'Designed using Canva and Photoshop for a youth church event.',
-          image: Africa // Replace with actual image
+          icon: 'fas fa-calendar-alt'
         },
         {
           title: 'Business Logo - Nala Beauty',
           description: 'Custom minimalist logo design for a local beauty brand.',
-          image: AfricaDay
+          icon: 'fas fa-palette'
         },
         {
           title: 'Product Promo Banner',
           description: 'Social media promotional banner created for an online campaign.',
-          image: cableImage
+          icon: 'fas fa-bullhorn'
         }
       ]
     }
@@ -265,7 +284,7 @@ export default {
         return this.projects;
       }
       if (this.activeFilter === 'Designing') {
-        return []; // Return empty array since designs are handled separately
+        return [];
       }
       return this.projects.filter(project => project.category === this.activeFilter);
     }
@@ -349,40 +368,107 @@ export default {
 
 .project-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.project-image {
+/* Visual Design Styles */
+.project-visual {
   position: relative;
-  height: 250px; /* uniform height for all project images */
+  height: 200px;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f7f7f7, #eaeaea);
-  border-bottom: 1px solid #eee;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ensures consistent aspect ratio */
-  display: block;
-  background: linear-gradient(to bottom, #f7f7f7, #eaeaea);
-
-  transition: transform 0.3s ease;
+.visual-corporate {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.project-card:hover .project-image img {
-  transform: scale(1.05);
+.visual-productivity {
+  background: linear-gradient(135deg, #8b7cf8 0%, #667eea 100%);
+}
+
+.visual-nonprofit {
+  background: linear-gradient(135deg, #a8a4f5 0%, #8b7cf8 100%);
+}
+
+.visual-mobile {
+  background: linear-gradient(135deg, #9c88ff 0%, #764ba2 100%);
+}
+
+.visual-portfolio {
+  background: linear-gradient(135deg, #b794f6 0%, #9c88ff 100%);
+}
+
+
+.project-icon {
+  font-size: 3rem;
+  color: white;
+  z-index: 2;
+  position: relative;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 60px;
+  height: 60px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 40px;
+  height: 40px;
+  bottom: 20%;
+  left: 70%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }
 
 .project-overlay {
@@ -397,6 +483,7 @@ export default {
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .project-card:hover .project-overlay {
@@ -412,14 +499,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   text-decoration: none;
   border-radius: 50%;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .project-link:hover {
@@ -444,6 +532,7 @@ export default {
   font-size: 1.3rem;
   color: #333;
   margin-bottom: 0.75rem;
+  font-weight: 600;
 }
 
 .project-description {
@@ -459,12 +548,13 @@ export default {
 }
 
 .tech-tag {
-  background: #f0f0f0;
-  color: #555;
-  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #495057;
+  padding: 0.3rem 0.8rem;
   border-radius: 15px;
   font-size: 0.8rem;
   font-weight: 500;
+  border: 1px solid #dee2e6;
 }
 
 .tech-tag.large {
@@ -472,21 +562,26 @@ export default {
   font-size: 0.9rem;
 }
 
+.tech-more {
+  color: #667eea;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+}
+
 /* Design Grid Styles */
 .design-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
 }
 
 .design-card {
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
-  width: 100%; /* or set a specific width like 650px */
-  max-width: none;
 }
 
 .design-card:hover {
@@ -494,21 +589,55 @@ export default {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-.design-image {
-  width: 630px;
-  height: 900px;
-  object-fit: cover;
-  background: linear-gradient(to bottom, #f7f7f7, #eaeaea);
-  display: block;
+.design-visual {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
+.design-1 .design-visual {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.design-2 .design-visual {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.design-3 .design-visual {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.design-icon {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+.design-pattern {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 .design-content {
   padding: 1.5rem;
 }
 
 .design-title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 0.75rem;
@@ -538,22 +667,22 @@ export default {
 
 .modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  animation: modalSlideIn 0.3s ease;
+  animation: modalSlideIn 0.4s ease;
 }
 
 @keyframes modalSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -579,40 +708,66 @@ export default {
 }
 
 .modal-header {
-  padding: 2rem 2rem 1rem;
+  padding: 2rem;
   border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.modal-project-visual {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-project-icon {
+  font-size: 2rem;
+  color: white;
+}
+
+.modal-header-content {
+  flex: 1;
 }
 
 .modal-header h2 {
   color: #333;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .modal-links {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .modal-btn {
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .modal-btn {
-  background: #f0f0f0;
-  color: #333;
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
 }
 
 .modal-btn.primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  border: none;
 }
 
 .modal-btn:hover {
@@ -621,12 +776,6 @@ export default {
 
 .modal-body {
   padding: 2rem;
-}
-
-.modal-image {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 2rem;
 }
 
 .modal-details h3 {
@@ -679,13 +828,18 @@ export default {
     padding: 1rem;
   }
 
-  .modal-header,
+  .modal-header {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
   .modal-body {
     padding: 1.5rem;
   }
 
   .modal-links {
-    flex-direction: column;
+    justify-content: center;
   }
 }
 </style>
