@@ -247,7 +247,7 @@ export default {
       isSubmitting: false,
       submitMessage: '',
       submitStatus: ''
-    }
+    };
   },
   methods: {
     validateForm() {
@@ -285,40 +285,56 @@ export default {
       this.submitMessage = '';
 
       try {
-        // Simulate API call - replace with actual implementation
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        const response = await fetch('https://formspree.io/f/mdkzgvge', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            name: this.form.name,
+            email: this.form.email,
+            phone: this.form.phone,
+            subject: this.form.subject,
+            message: this.form.message,
+            newsletter: this.form.newsletter ? 'Yes' : 'No'
+          })
+        });
 
-        // Here you would typically send the form data to your backend
-        console.log('Form submitted:', this.form);
+        const result = await response.json();
 
-        this.submitMessage = 'Thank you for your message! I\'ll get back to you within 24 hours.';
-        this.submitStatus = 'success';
+        if (response.ok) {
+          this.submitMessage = '✅ Thank you! Your message has been sent.';
+          this.submitStatus = 'success';
 
-        // Reset form
-        this.form = {
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-          newsletter: false
-        };
-
+          this.form = {
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: '',
+            newsletter: false
+          };
+        } else {
+          this.submitMessage = '❌ Something went wrong. Please try again.';
+          this.submitStatus = 'error';
+        }
       } catch (error) {
-        this.submitMessage = 'Sorry, there was an error sending your message. Please try again or contact me directly.';
+        console.error(error);
+        this.submitMessage = '❌ Failed to send. Please check your connection.';
         this.submitStatus = 'error';
       } finally {
         this.isSubmitting = false;
 
-        // Clear message after 5 seconds
         setTimeout(() => {
           this.submitMessage = '';
         }, 5000);
       }
     }
   }
-}
+};
 </script>
+
 
 <style scoped>
 .contact {
