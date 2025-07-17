@@ -112,7 +112,7 @@
               :class="{ 'error': errors.subject }"
             >
               <option value="">Select a subject</option>
-              <option value="web-development">Web Development Project</option>
+              <option value="web-development">Web Development </option>
               <option value="data-analytics">Data Analytics Consultation</option>
               <option value="freelance">Freelance Opportunity</option>
               <option value="full-time">Full-time Position</option>

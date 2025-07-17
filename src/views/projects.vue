@@ -148,12 +148,12 @@ export default {
     return {
       activeFilter: 'All',
       selectedProject: null,
-      categories: ['All', 'Web Apps', 'Mobile', ],
+      categories: ['All', 'Web Apps', 'Mobile','Wordpress' ],
       projects: [
         {
           id: 1,
           title: 'OD International Website',
-          category: 'Web Apps',
+          category: 'Wordpress',
           shortDescription: 'Corporate website with blog, mobile prototype, and SEO enhancements',
           fullDescription: 'A modern, fully responsive corporate website developed for OD International. Built using WordPress and Framer, the site enhances user experience and engagement with clean design, optimized SEO, and dynamic content sections. Included development of mobile app prototypes using Flutter and implementation of data-driven marketing features.',
           technologies: ['WordPress', 'Framer', 'Flutter', 'HTML', 'CSS', 'JavaScript'],
@@ -171,6 +171,29 @@ export default {
           icon: 'fas fa-globe',
           visualClass: 'visual-corporate'
         },
+
+        {
+          id: 1,
+          title: 'Pia Built Homes',
+          category: 'Wordpress',
+          shortDescription: 'Premium custom home builder in Sydney specialising in custom designs, knock‑down rebuilds and duplex homes',
+          fullDescription: 'Pia Built Homes is a family‑owned custom home builder based in Gregory Hills (Sydney), with over 15 years’ experience in luxury residential construction. Specializing in custom homes, duplex builds and knock‑down rebuilds, they provide end‑to‑end service: from architectural design, approvals and drafting through to construction and interior detailing. Pia Built Homes creates bespoke residences tailored to clients’ lifestyle and block constraints, ensuring compliance with statutory requirements and delivering energy‑efficient, beautifully crafted homes across Greater Sydney.',
+          technologies: ['WordPress', 'PHP', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+          "Responsive custom WordPress site highlighting design consultation, approvals & project gallery",
+          "Detailed services pages for Custom Homes, Knock‑Down Rebuilds & Duplexes",
+          "Team‑focused messaging showcasing 15+ years of experience",
+          "Interactive contact forms for consultations (phone, email enquiries)",
+          "Locations and service areas clearly mapped (Greater Sydney including Sutherland Shire, Cronulla, Caringbah)",
+          "SEO optimized content to target custom home building keywords in Sydney",
+          "Mobile‑friendly and easy to navigate project gallery and enquiry flow"
+          ],
+          demo: 'https://www.piabuilthomes.com.au/',
+          icon: 'fas fa-home',
+          visualClass: 'visual-corporate'
+        },
+
+
         {
           id: 2,
           title: 'Task Management App',
@@ -194,7 +217,7 @@ export default {
         {
           id: 3,
           title: 'Wings of Hope Website',
-          category: 'Web Apps',
+          category: 'Wordpress',
           shortDescription: 'Framer-based responsive website for a non-profit organization',
           fullDescription: 'Developed a modern, fully responsive website for Wings of Hope using Framer. The project focused on clean UX/UI, smooth animations, and clear messaging to support the organizations\'s mission. The site includes dynamic content sections, contact forms, and a fully branded design tailored to their identity.',
           technologies: ['Framer', 'HTML', 'CSS', 'JavaScript'],
@@ -212,6 +235,53 @@ export default {
           icon: 'fas fa-heart',
           visualClass: 'visual-nonprofit'
         },
+
+        
+        {
+          id: 3,
+          title: 'TheAdCo Cedar Demo ',
+          category: 'Wordpress',
+          shortDescription: 'Premium home builder website with elegant design, service showcase, and high-end residential portfolio',
+          fullDescription: 'Cedar is a bespoke home construction company whose site showcases refined residential design and quality craftsmanship. Built using WordPress and Elementor, the site presents Cedar’s custom home services, detailed project pages, and luxury-focused visual design. It features a clean hero banner, interactive service sections, and an elegant portfolio layout tailored for clients seeking modern, high-end living spaces.',
+          technologies: ["WordPress", "Elementor", "HTML", "CSS", "JavaScript"],
+          features: [
+            "Hero section with high-resolution visuals and CTA",
+            "Service showcase blocks with modern iconography",
+            "Portfolio/project gallery with filtering options",
+            "About and values sections emphasizing craftsmanship",
+            "Fully responsive and performance-optimized layout",
+            "Integrated contact form and inquiry functionality",
+            "SEO-optimized pages targeting the home construction niche"
+          ],
+          demo: 'https://demo4.theadco.com.au/',
+          icon: 'fas fa-house-user',
+          visualClass: 'visual-nonprofit'
+        },
+
+
+
+        {
+          id: 3,
+          title: 'Dr George Awward',
+          category: 'Wordpress',
+          shortDescription: 'Medical professional website focused on patient care, treatment offerings, and appointment booking',
+          fullDescription: 'The website for Dr. George Awward presents a sleek and professional platform tailored for healthcare clients. Designed using WordPress and Elementor, it features informative sections about medical expertise, services, testimonials, and streamlined contact options. The site is mobile-responsive and HIPAA-conscious, ensuring both ease of use and patient trust. It balances medical professionalism with user-friendly navigation, making it ideal for attracting and informing prospective patients.',
+          technologies: ["WordPress", "Elementor", "HTML", "CSS", "JavaScript"],
+          features: [
+            "Service-specific sections with imagery and educational content",
+            "Online appointment request forms with secure handling",
+            "Responsive layout optimized for mobile and tablet users",
+            "Patient testimonials and professional biography",
+            "Clean navigation structure for quick access to treatment areas",
+            "Integrated Google Maps and contact details",
+            "SEO-enhanced for medical keywords and location targeting"
+          ],
+          demo: 'https://drgeorgeawward.theadco.com.au/',
+          icon: 'fas fa-user-md',
+          visualClass: 'visual-nonprofit'
+        },
+
+
         {
           id: 4,
           title: 'TaskFlow Mobile App',

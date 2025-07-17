@@ -22,26 +22,27 @@ const routes = [
     name: 'Projects',
     component: Projects
   },
-
-    {
+  {
     path: '/skills',
     name: 'Skills',
     component: Skills
   },
-
-    {
+  {
     path: '/experience',
     name: 'Experience',
     component: Experience
   },
-
-     {
+  {
     path: '/contact',
     name: 'Contact',
     component: Contact
   },
 
-
+  // ✅ Catch-all route: redirect anything unknown to home
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
+  }
 ]
 
 const router = createRouter({
