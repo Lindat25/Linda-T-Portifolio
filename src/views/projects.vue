@@ -219,7 +219,7 @@ export default {
           title: 'Wings of Hope Website',
           category: 'Wordpress',
           shortDescription: 'Framer-based responsive website for a non-profit organization',
-          fullDescription: 'Developed a modern, fully responsive website for Wings of Hope using Framer. The project focused on clean UX/UI, smooth animations, and clear messaging to support the organizations\'s mission. The site includes dynamic content sections, contact forms, and a fully branded design tailored to their identity.',
+          fullDescription: 'Designed and developed a responsive website for Wings of Hope, a South African non-profit supporting vulnerable individuals through cancer assistance, meal programs, and community outreach. The project involved creating a clean, user-friendly layout with clear navigation to highlight their services and encourage donations. I implemented SEO strategies and optimized for mobile devices, improving accessibility and visibility. This platform now serves as a vital digital presence for the organization, helping them connect with donors and expand their outreach.',
           technologies: ['Framer', 'HTML', 'CSS', 'JavaScript'],
           features: [
             'Designed and developed using Framer\'s visual builder',
@@ -281,6 +281,30 @@ export default {
           visualClass: 'visual-nonprofit'
         },
 
+
+
+
+        {
+          id: 6,
+          title: 'Living Blessings Christian Pre-School',
+          category: 'Web Apps',
+          shortDescription: 'Educational website for a pre-school and early grades institution with program info, admissions, and parent resources',
+          fullDescription: 'Living Blessings School is a responsive multi-page website developed to serve a faith-based early childhood education institution, covering pre-school through Grade 3. Built using HTML, CSS, and JavaScript, the site includes program overviews, admissions info, gallery, parent communication resources, and contact functionality. Designed with accessibility and clarity in mind, it reflects a calm and nurturing visual identity. The site serves both prospective and enrolled families, with clear navigation and mobile-friendly layouts.',
+          technologies: ["HTML", "CSS", "JavaScript"],
+          features: [
+             "Multi-page structure: Home, About, Programs, Admissions, Events, Contact",
+            "Mobile-optimized responsive design for parents on the go",
+            "Admissions section with requirements and enrollment process",
+            "Image gallery to showcase classrooms and activities",
+            "Contact form with location map integration",
+            "Faith-aligned design elements and color scheme",
+            "Fast-loading and hosted via Vercel"
+          ],
+          github: 'https://github.com/Lindat25/LivingBlessings.git',
+          demo: 'https://living-blessings-p9re.vercel.app/',
+          icon: 'fas fa-user',
+          visualClass: 'visual-portfolio'
+        },
 
         {
           id: 4,

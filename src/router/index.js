@@ -5,6 +5,7 @@ import Projects from '../views/Projects.vue'
 import Skills from'../views/skills.vue'
 import Experience from '../views/experience.vue'
 import Contact from '../views/contact.vue'
+import Certifications from '../views/certifications.vue'
 
 const routes = [
   {
@@ -32,11 +33,20 @@ const routes = [
     name: 'Experience',
     component: Experience
   },
+
+  {
+    path: '/certifications',
+    name: 'Certifications',
+    component: Certifications
+  },
+  
+
   {
     path: '/contact',
     name: 'Contact',
     component: Contact
   },
+   
 
   // ✅ Catch-all route: redirect anything unknown to home
   {
