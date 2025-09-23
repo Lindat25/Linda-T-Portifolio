@@ -346,7 +346,7 @@ export default {
             'Fast loading performance',
             'Mobile-first approach'
           ],
-          github: 'https://github.com/yourusername/portfolio',
+          github: 'https://github.com/Lindat25/Linda-T-Portifolio',
           demo: 'https://yourportfolio.com',
           icon: 'fas fa-user',
           visualClass: 'visual-portfolio'
