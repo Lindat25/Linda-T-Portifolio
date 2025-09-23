@@ -235,7 +235,7 @@ export default {
           completion: 'June 2025'
         },
         {
-          name: 'Cybersecurity Certification with Makatob',
+          name: 'Ethical Hacking with Makatob and Cisco Networking Academy',
           description: 'Developing expertise in network security, threat detection, and security protocols for modern applications.',
           status: 'In Progress',
           progress: 45,
