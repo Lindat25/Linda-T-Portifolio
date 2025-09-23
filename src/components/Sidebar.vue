@@ -1,4 +1,3 @@
-<!-- src/components/Sidebar.vue -->
 <template>
   <div class="sidebar">
     <!-- Profile -->
@@ -15,7 +14,7 @@
       </div>
     </div>
 
-    <!-- Navigation (kept, with icons) -->
+    <!-- Navigation -->
     <nav class="navigation">
       <router-link
         v-for="item in navItems"
@@ -48,7 +47,7 @@
       </div>
     </div>
 
-    <!-- CV: View (modal over dashboard) + Download -->
+    <!-- CV: View + Download -->
     <div class="cv-actions">
       <button class="btn ghost" @click="openCV" aria-label="View CV">
         <i class="fas fa-eye"></i><span>View CV</span>
@@ -57,8 +56,10 @@
         <i class="fas fa-download"></i><span>Download CV</span>
       </a>
     </div>
+  </div>
 
-    <!-- CV Modal: covers ONLY the dashboard (right side), not the sidebar -->
+  <!-- Render modal at <body> and offset it past the sidebar -->
+  <teleport to="body">
     <div
       v-if="showCvModal"
       class="cv-overlay"
@@ -69,18 +70,17 @@
     >
       <div class="cv-modal">
         <button class="cv-close" @click="closeCV" aria-label="Close">✖</button>
-        <!-- Native PDF viewer UI (toolbar/zoom/print) -->
         <iframe :src="cvUrl" title="CV Viewer" frameborder="0"></iframe>
       </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
 import profileImage from '@/assets/images/profile.jpg'
 
-// base-path safe asset URL (works on subfolder deploys like GitHub Pages)
+// Works with Vite; adjust the path to your PDF if needed
 const cvUrl = new URL('@/assets/cv/Linda_Takuva_CV.pdf', import.meta.url).href
 
 export default {
@@ -240,23 +240,28 @@ export default {
 }
 .btn.solid:hover{ filter:brightness(.98); transform: translateY(-1px); }
 
-/* ===== CV Modal — ONLY over dashboard (right of sidebar) ===== */
+/* ===== CV Modal — fixed to viewport, offset past the sidebar ===== */
 .cv-overlay{
-  position:fixed;
-  top:0;
-  left: var(--sidebar-width, 300px);          /* start AFTER the sidebar */
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width, 300px);              /* start after the sidebar */
   width: calc(100% - var(--sidebar-width, 300px));
-  height:100%;
-  z-index:1100;
-  background:rgba(0,0,0,.6);
-  display:grid; place-items:center;
+  height: 100%;
+  z-index: 2000;                                  /* higher than sidebar (1000) */
+  background: rgba(0,0,0,.6);
+  display: grid; place-items: center;
 }
+
 @media (max-width:768px){
-  .cv-overlay{ left:0; width:100%; }          /* full width on mobile */
+  .cv-overlay{
+    left: 0;                                      /* full-screen on mobile */
+    width: 100%;
+  }
 }
+
 .cv-modal{
-  width:min(980px, 92vw);
-  height:min(85vh, 900px);
+  width: min(1100px, 94vw);
+  height: min(90vh, 1000px);
   background:#fff; border-radius:14px; overflow:hidden; position:relative;
   display:flex; flex-direction:column; box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
@@ -278,6 +283,6 @@ export default {
   .nav-item{ grid-template-columns:28px 1fr; padding:.55rem .4rem; margin:0; border-radius:10px; }
   .nav-text{ font-size:.64rem; }
   .nav-trailing, .nav-indicator{ display:none; }
-  .cv-actions{ display:none; } /* keep bottom bar clean */
+  .cv-actions{ display:none; }
 }
 </style>
