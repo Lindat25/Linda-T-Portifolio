@@ -39,8 +39,8 @@ export default {
   name: 'Home',
   data() {
     return {
-      projectCount: 12,
-      yearsExperience: 2,
+      projectCount: 10,
+      yearsExperience: 3,
       techStack: ['JavaScript', 'Python', 'Vue.js', 'PHP', 'Laravel', 'WordPress']
     }
   }
