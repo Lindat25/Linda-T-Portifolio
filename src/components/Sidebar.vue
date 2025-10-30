@@ -78,7 +78,7 @@
 
 <script>
 import { useRoute } from 'vue-router'
-import profileImage from '@/assets/images/profile.jpg'
+import profileImage from '@/assets/images/profile.jpeg'
 
 // Works with Vite; adjust the path to your PDF if needed
 const cvUrl = new URL('@/assets/cv/Linda_Takuva_CV.pdf', import.meta.url).href
