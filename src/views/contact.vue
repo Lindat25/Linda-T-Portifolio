@@ -36,7 +36,7 @@
             </div>
             <div class="contact-details">
               <h3>Location</h3>
-              <p>568 Campbell Road, Borrowdale<br>Harare, Zimbabwe</p>
+              <p>Mukwesha Village, Domboshava <br>Harare, Zimbabwe</p>
             </div>
           </div>
         </div>
