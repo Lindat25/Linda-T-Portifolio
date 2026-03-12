@@ -194,6 +194,77 @@ export default {
         },
 
 
+
+
+
+
+        {
+          id: 1,
+          title: 'E-Sports',
+          category: 'Wordpress',
+          shortDescription: ' A gaming blog and informational hub built with WordPress and Elementor, offering esports guides, competitive gaming insights, and industry tips, along with betting and casino strategy content.',
+          fullDescription: 'EsportsLeagueTips.com is a content-driven gaming website built with WordPress and Elementor, designed to deliver competitive gaming insights, esports news, and strategy articles. I developed and styled the site using Elementor’s visual builder, organizing content into intuitive sections and categories to improve user engagement and navigation. The site features dynamic blog layouts, custom category pages, responsive design for different screen sizes, and clear UI blocks to showcase featured articles.',
+          technologies: ['WordPress', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+          "Multi-Category Content Architecture",
+          "Dynamic Archive & Posts Layout",
+          "Customizable Headers & Navigation Menus",
+          "Responsive Grids for Blog Articles",
+          "Built on WordPress CMS",
+          "Elementor Page Builder",
+          "SEO-Friendly Structure"
+          ],
+          demo: 'https://esportsleaguetips.com/',
+          icon: 'fas fa-home',
+          visualClass: 'visual-corporate'
+        },
+
+
+         {
+          id: 1,
+          title: 'Cleanserv',
+          category: 'Wordpress',
+          shortDescription: ' CleanServ.co.za is a professional cleaning services website built on WordPress with Elementor, offering residential, commercial, and industrial cleaning solutions across Johannesburg and surrounding areas in South Africa.',
+          fullDescription: 'CleanServ.co.za is a fully developed WordPress website built with Elementor for a professional cleaning services company in South Africa. I designed and structured the site to showcase a wide range of cleaning solutions — including residential, commercial, and industrial services — using organized service pages, testimonials, pricing packages, and clear booking forms. The homepage features modular content blocks for intuitive browsing and conversion-focused calls to action, while service detail pages provide in-depth information tailored to user needs.',
+          technologies: ['WordPress', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+          "Conversion-Focused Service Architecture",
+          "Lead Generation & Inquiry System",
+          "Local SEO Structure",
+          "Responsive Grids for Blog Articles",
+          "Built on WordPress CMS",
+          "Elementor Page Builder",
+          "SEO-Friendly Content Organization",
+          "Trust & Authority Elements",
+          "Responsive & Mobile Optimization"
+          ],
+          demo: 'https://cleanserv.co.za/',
+          icon: 'fas fa-home',
+          visualClass: 'visual-corporate'
+        },
+
+        {
+          id: 1,
+          title: 'Mazvita Travel and Tours',
+          category: 'Wordpress',
+          shortDescription: 'A WordPress travel and boat hire website built with Elementor, offering Lake Kariba boat rides, cruises, fishing adventures, and guided tours in Zimbabwe',
+          fullDescription: 'I developed a high-performance, conversion-focused service platform for a premier Lake Kariba tour operator specializing in boat hire and event charters. Built with WordPress and Elementor, the site utilizes a modular design pattern to ensure intuitive navigation across a diverse service catalog, including sunset cruises, guided fishing tours, and event charters. To drive business growth, I engineered a dedicated lead-generation funnel supported by trust-building UI components, such as vibrant visual galleries and strategic customer testimonials. Furthermore, I implemented a robust local SEO structure and fully responsive layouts to maximize search visibility and user engagement across all devices, effectively bridging the gap between digital discovery and confirmed bookings.',
+          technologies: ['WordPress', 'HTML', 'CSS', 'JavaScript'],
+          features: [
+          "Experience-Driven Design Strategy",
+          "Service Package Structuring",
+          "Performance & Responsiveness",
+          "Responsive Grids for Blog Articles",
+          "Scalable CMS Setup",
+          "Elementor Page Builder",
+          "SEO-Friendly Content Organization"
+          ],
+          demo: 'mazvitatravelandtours.co.zw',
+          icon: 'fas fa-home',
+          visualClass: 'visual-corporate'
+        },
+
+
         {
           id: 2,
           title: 'Task Management App',
@@ -258,28 +329,6 @@ export default {
           visualClass: 'visual-nonprofit'
         },
 
-
-
-        {
-          id: 3,
-          title: 'Dr George Awward',
-          category: 'Wordpress',
-          shortDescription: 'Medical professional website focused on patient care, treatment offerings, and appointment booking',
-          fullDescription: 'The website for Dr. George Awward presents a sleek and professional platform tailored for healthcare clients. Designed using WordPress and Elementor, it features informative sections about medical expertise, services, testimonials, and streamlined contact options. The site is mobile-responsive and HIPAA-conscious, ensuring both ease of use and patient trust. It balances medical professionalism with user-friendly navigation, making it ideal for attracting and informing prospective patients.',
-          technologies: ["WordPress", "Elementor", "HTML", "CSS", "JavaScript"],
-          features: [
-            "Service-specific sections with imagery and educational content",
-            "Online appointment request forms with secure handling",
-            "Responsive layout optimized for mobile and tablet users",
-            "Patient testimonials and professional biography",
-            "Clean navigation structure for quick access to treatment areas",
-            "Integrated Google Maps and contact details",
-            "SEO-enhanced for medical keywords and location targeting"
-          ],
-          demo: 'https://drgeorgeawward.theadco.com.au/',
-          icon: 'fas fa-user-md',
-          visualClass: 'visual-nonprofit'
-        },
 
 
 
